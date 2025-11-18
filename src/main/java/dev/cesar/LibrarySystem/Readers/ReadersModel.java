@@ -3,15 +3,15 @@ package dev.cesar.LibrarySystem.Readers;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tb_library_system")
+@Table(name = "tb_readers")
 public class ReadersModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String name;
-    String email;
-    int age;
+    private Long id;
+    private String name;
+    private String email;
+    private int age;
 
     public ReadersModel() {
     }
