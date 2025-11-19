@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping
 public class ReadersController {
-
     @GetMapping("/welcome")
     public String welcome() {
         return "Essa é minha primeira mensagem nesta rota";
