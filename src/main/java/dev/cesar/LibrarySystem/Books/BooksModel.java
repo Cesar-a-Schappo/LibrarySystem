@@ -19,16 +19,21 @@ public class BooksModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "title")
     private String title;
 
+    @Column(name = "genre")
     private String genre;
 
+    @Column(name = "author")
     private String author;
 
     @ManyToOne
     @JoinColumn(name = "reader_id")
+    @Column(name = "reader")
     private List<ReadersModel> reader;
 
 }
