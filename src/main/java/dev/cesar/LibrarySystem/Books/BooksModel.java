@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_books")
+@Table(name = "tb_books", uniqueConstraints = {@UniqueConstraint(columnNames = {"author", "title"})})
 @Getter
 @Setter
 public class BooksModel {
