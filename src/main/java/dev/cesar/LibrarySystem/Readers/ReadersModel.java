@@ -1,5 +1,6 @@
 package dev.cesar.LibrarySystem.Readers;
 
+import dev.cesar.LibrarySystem.Books.BooksModel;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,17 +10,24 @@ public class ReadersModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private String email;
+
     private int age;
+
+    @OneToMany(mappedBy = "reader")
+    private BooksModel books;
 
     public ReadersModel() {
     }
 
-    public ReadersModel(String name, String email, int age) {
+    public ReadersModel(String name, String email, int age, BooksModel books) {
         this.name = name;
         this.email = email;
         this.age = age;
+        this.books = books;
     }
 
     public String getName() {
@@ -44,5 +52,13 @@ public class ReadersModel {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public BooksModel getBooks() {
+        return books;
+    }
+
+    public void setBooks(BooksModel books) {
+        this.books = books;
     }
 }
