@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -30,7 +32,6 @@ public class ReadersModel {
     private int age;
 
     @OneToMany(mappedBy = "reader")
-    @Column(name = "books")
-    private BooksModel books;
+    private List<BooksModel> books;
 
 }

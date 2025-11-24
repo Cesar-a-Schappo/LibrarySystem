@@ -33,7 +33,6 @@ public class BooksModel {
 
     @ManyToOne
     @JoinColumn(name = "reader_id")
-    @Column(name = "reader")
-    private List<ReadersModel> reader;
+    private ReadersModel reader;
 
 }
