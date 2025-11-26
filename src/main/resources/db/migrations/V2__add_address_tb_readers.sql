@@ -1,0 +1,2 @@
+ALTER TABLE tb_readers
+ADD COLUMN address VARCHAR(255);
