@@ -3,6 +3,7 @@ package dev.cesar.LibrarySystem.Readers;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReadersService {
@@ -16,4 +17,10 @@ public class ReadersService {
     public List<ReadersModel> listAllReaders() {
         return readersRepository.findAll();
     }
+
+    public ReadersModel listReadersById(Long id) {
+        Optional<ReadersModel> readerById = readersRepository.findById(id);
+        return readerById.orElse(null);
+    }
+
 }

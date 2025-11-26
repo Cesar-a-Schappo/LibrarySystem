@@ -30,8 +30,8 @@ public class ReadersController {
     }
 
     @GetMapping("/list/{id}")
-    public String listReadersById() {
-        return "reader listed by its id";
+    public ReadersModel listReadersById(@PathVariable Long id) {
+        return readersService.listReadersById(id);
     }
 
     @PutMapping("/change/{id}")
