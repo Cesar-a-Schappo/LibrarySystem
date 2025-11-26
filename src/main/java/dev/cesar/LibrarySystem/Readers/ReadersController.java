@@ -2,9 +2,17 @@ package dev.cesar.LibrarySystem.Readers;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("readers")
 public class ReadersController {
+
+    private final ReadersService readersService;
+
+    public ReadersController(ReadersService readersService) {
+        this.readersService = readersService;
+    }
 
     @GetMapping("/welcome")
     public String welcome() {
@@ -17,8 +25,8 @@ public class ReadersController {
     }
 
     @GetMapping("/list")
-    public String listAllReaders() {
-        return "all readers listed";
+    public List<ReadersModel> listAllReaders() {
+        return readersService.listAllReaders();
     }
 
     @GetMapping("/list/{id}")
