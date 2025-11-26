@@ -1,5 +1,6 @@
 package dev.cesar.LibrarySystem.Readers;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.cesar.LibrarySystem.Books.BooksModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,7 @@ public class ReadersModel {
     private int age;
 
     @OneToMany(mappedBy = "reader")
+    @JsonIgnore
     private List<BooksModel> books;
 
 }
