@@ -2,9 +2,17 @@ package dev.cesar.LibrarySystem.Books;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("books")
 public class BooksController {
+
+    private final BooksService booksService;
+
+    public BooksController(BooksService booksService) {
+        this.booksService = booksService;
+    }
 
     @PostMapping("/create")
     public String createBook() {
@@ -12,8 +20,8 @@ public class BooksController {
     }
 
     @GetMapping("/list")
-    public String listAllBooks() {
-        return "all books listed";
+    public List<BooksModel> listAllBooks() {
+        return booksService.listAllBooks();
     }
 
     @GetMapping("/list/{id}")
