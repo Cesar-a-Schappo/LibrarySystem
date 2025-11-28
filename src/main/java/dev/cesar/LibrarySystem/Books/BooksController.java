@@ -25,8 +25,8 @@ public class BooksController {
     }
 
     @GetMapping("/list/{id}")
-    public String listBooksById() {
-        return "book listed by its id";
+    public BooksModel listBooksById(@PathVariable Long id) {
+        return booksService.listBookById(id);
     }
 
     @PutMapping("/change/{id}")

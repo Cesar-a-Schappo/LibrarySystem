@@ -3,6 +3,7 @@ package dev.cesar.LibrarySystem.Books;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BooksService {
@@ -15,6 +16,11 @@ public class BooksService {
 
     public List<BooksModel> listAllBooks() {
         return booksRepository.findAll();
+    }
+
+    public BooksModel listBookById(Long id) {
+        Optional<BooksModel> listById = booksRepository.findById(id);
+        return listById.orElse(null);
     }
 
 }
