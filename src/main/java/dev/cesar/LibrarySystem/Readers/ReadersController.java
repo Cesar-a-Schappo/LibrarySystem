@@ -34,9 +34,9 @@ public class ReadersController {
         return readersService.listReadersById(id);
     }
 
-    @PutMapping("/change/{id}")
-    public String changeReaderById() {
-        return "reader changed by its id";
+    @PutMapping("/update/{id}")
+    public ReadersModel updateReaderById(@PathVariable Long id, @RequestBody ReadersModel reader) {
+        return readersService.updateReaderById(id, reader);
     }
 
     @DeleteMapping("/delete/{id}")
