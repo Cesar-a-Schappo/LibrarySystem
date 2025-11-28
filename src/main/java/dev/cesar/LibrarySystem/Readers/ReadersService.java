@@ -23,8 +23,12 @@ public class ReadersService {
     }
 
     public ReadersModel listReadersById(Long id) {
-        Optional<ReadersModel> readerById = readersRepository.findById(id);
-        return readerById.orElse(null);
+        Optional<ReadersModel> changeById = readersRepository.findById(id);
+        return changeById.orElse(null);
+    }
+
+    public void deleteReaderById(Long id) {
+        readersRepository.deleteById(id);
     }
 
 }

@@ -40,8 +40,8 @@ public class ReadersController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteReaderById() {
-        return "reader deleted by its id";
+    public void deleteReaderById(@PathVariable Long id) {
+        readersService.deleteReaderById(id);
     }
 
 
