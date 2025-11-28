@@ -14,6 +14,10 @@ public class ReadersService {
         this.readersRepository = readersRepository;
     }
 
+    public ReadersModel createReader(ReadersModel reader) {
+        return readersRepository.save(reader);
+    }
+
     public List<ReadersModel> listAllReaders() {
         return readersRepository.findAll();
     }
