@@ -15,8 +15,8 @@ public class BooksController {
     }
 
     @PostMapping("/create")
-    public String createBook() {
-        return "book created";
+    public BooksModel createBook(@RequestBody BooksModel book) {
+        return booksService.createBook(book);
     }
 
     @GetMapping("/list")

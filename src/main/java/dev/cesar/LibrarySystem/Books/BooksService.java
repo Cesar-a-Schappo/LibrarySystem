@@ -14,6 +14,10 @@ public class BooksService {
         this.booksRepository = booksRepository;
     }
 
+    public BooksModel createBook(BooksModel book) {
+        return booksRepository.save(book);
+    }
+
     public List<BooksModel> listAllBooks() {
         return booksRepository.findAll();
     }
