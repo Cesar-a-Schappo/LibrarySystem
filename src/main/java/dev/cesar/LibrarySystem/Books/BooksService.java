@@ -27,6 +27,14 @@ public class BooksService {
         return listById.orElse(null);
     }
 
+    public BooksModel updateBookById(Long id, BooksModel book) {
+        if (booksRepository.existsById(id)) {
+            book.setId(id);
+            booksRepository.save(book);
+        }
+        return null;
+    }
+
     public void deleteBookById(Long id) {
         booksRepository.deleteById(id);
     }

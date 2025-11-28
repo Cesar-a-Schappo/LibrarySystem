@@ -29,9 +29,9 @@ public class BooksController {
         return booksService.listBookById(id);
     }
 
-    @PutMapping("/change/{id}")
-    public String changeBookById() {
-        return "book changed by its id";
+    @PutMapping("/update/{id}")
+    public BooksModel updateBookById(@PathVariable Long id, @RequestBody BooksModel book) {
+        return booksService.updateBookById(id, book);
     }
 
     @DeleteMapping("/delete/{id}")
