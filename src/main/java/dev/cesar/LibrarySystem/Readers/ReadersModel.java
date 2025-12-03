@@ -32,6 +32,9 @@ public class ReadersModel {
     @Column(name = "age")
     private int age;
 
+    @Column(name = "address")
+    private String address;
+
     @OneToMany(mappedBy = "reader")
     @JsonIgnore
     private List<BooksModel> books;
