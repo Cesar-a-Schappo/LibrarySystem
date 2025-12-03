@@ -25,17 +25,17 @@ public class ReadersController {
     }
 
     @GetMapping("/list")
-    public List<ReadersModel> listAllReaders() {
+    public List<ReadersDTO> listAllReaders() {
         return readersService.listAllReaders();
     }
 
     @GetMapping("/list/{id}")
-    public ReadersModel listReadersById(@PathVariable Long id) {
+    public ReadersDTO listReadersById(@PathVariable Long id) {
         return readersService.listReadersById(id);
     }
 
     @PutMapping("/update/{id}")
-    public ReadersModel updateReaderById(@PathVariable Long id, @RequestBody ReadersModel reader) {
+    public ReadersDTO updateReaderById(@PathVariable Long id, @RequestBody ReadersDTO reader) {
         return readersService.updateReaderById(id, reader);
     }
 
@@ -43,6 +43,5 @@ public class ReadersController {
     public void deleteReaderById(@PathVariable Long id) {
         readersService.deleteReaderById(id);
     }
-
 
 }
