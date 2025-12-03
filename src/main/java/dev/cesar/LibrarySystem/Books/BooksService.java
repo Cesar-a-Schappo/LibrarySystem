@@ -22,19 +22,25 @@ public class BooksService {
         return booksMapper.map(book);
     }
 
-    public List<BooksModel> listAllBooks() {
-        return booksRepository.findAll();
+    public List<BooksDTO> listAllBooks() {
+        List<BooksModel> books = booksRepository.findAll();
+        return books.stream()
+                .map(booksMapper::map)
+                .toList();
     }
 
-    public BooksModel listBookById(Long id) {
+    public BooksDTO listBookById(Long id) {
         Optional<BooksModel> listById = booksRepository.findById(id);
-        return listById.orElse(null);
+        return listById.map(booksMapper::map).orElse(null);
     }
 
-    public BooksModel updateBookById(Long id, BooksModel book) {
-        if (booksRepository.existsById(id)) {
-            book.setId(id);
-            booksRepository.save(book);
+    public BooksDTO updateBookById(Long id, BooksDTO book) {
+        Optional<BooksModel> bookToUpdate = booksRepository.findById(id);
+        if (bookToUpdate.isPresent()) {
+            BooksModel updatedBook = booksMapper.map(book);
+            updatedBook.setId(id);
+            BooksModel savedBook = booksRepository.save(updatedBook);
+            return booksMapper.map(savedBook);
         }
         return null;
     }
