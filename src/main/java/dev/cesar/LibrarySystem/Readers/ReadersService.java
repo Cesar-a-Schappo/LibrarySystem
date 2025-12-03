@@ -9,13 +9,17 @@ import java.util.Optional;
 public class ReadersService {
 
     private final ReadersRepository readersRepository;
+    private final ReadersMapper readersMapper;
 
-    public ReadersService(ReadersRepository readersRepository) {
+    public ReadersService(ReadersRepository readersRepository, ReadersMapper readersMapper) {
         this.readersRepository = readersRepository;
+        this.readersMapper = readersMapper;
     }
 
-    public ReadersModel createReader(ReadersModel reader) {
-        return readersRepository.save(reader);
+    public ReadersDTO createReader(ReadersDTO readerDTO) {
+        ReadersModel reader = readersMapper.map(readerDTO);
+        reader = readersRepository.save(reader);
+        return readersMapper.map(reader);
     }
 
     public List<ReadersModel> listAllReaders() {

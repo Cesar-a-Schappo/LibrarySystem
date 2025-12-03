@@ -20,7 +20,7 @@ public class ReadersController {
     }
 
     @PostMapping("/create")
-    public ReadersModel createReader(@RequestBody ReadersModel reader) {
+    public ReadersDTO createReader(@RequestBody ReadersDTO reader) {
         return readersService.createReader(reader);
     }
 
