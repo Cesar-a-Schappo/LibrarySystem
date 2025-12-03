@@ -15,7 +15,7 @@ public class BooksController {
     }
 
     @PostMapping("/create")
-    public BooksModel createBook(@RequestBody BooksModel book) {
+    public BooksDTO createBook(@RequestBody BooksDTO book) {
         return booksService.createBook(book);
     }
 

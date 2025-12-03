@@ -9,13 +9,17 @@ import java.util.Optional;
 public class BooksService {
 
     private final BooksRepository booksRepository;
+    private final BooksMapper booksMapper;
 
-    public BooksService(BooksRepository booksRepository) {
+    public BooksService(BooksRepository booksRepository, BooksMapper booksMapper) {
         this.booksRepository = booksRepository;
+        this.booksMapper = booksMapper;
     }
 
-    public BooksModel createBook(BooksModel book) {
-        return booksRepository.save(book);
+    public BooksDTO createBook(BooksDTO bookDTO) {
+        BooksModel book = booksMapper.map(bookDTO);
+        book = booksRepository.save(book);
+        return booksMapper.map(book);
     }
 
     public List<BooksModel> listAllBooks() {
