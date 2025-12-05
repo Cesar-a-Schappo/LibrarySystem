@@ -1,5 +1,7 @@
 package dev.cesar.LibrarySystem.Readers;
 
+import dev.cesar.LibrarySystem.Books.BooksModel;
+import dev.cesar.LibrarySystem.Books.BooksRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +11,12 @@ public class ReadersService {
 
     private final ReadersRepository readersRepository;
     private final ReadersMapper readersMapper;
+    private final BooksRepository booksRepository;
 
-    public ReadersService(ReadersRepository readersRepository, ReadersMapper readersMapper) {
+    public ReadersService(ReadersRepository readersRepository, ReadersMapper readersMapper, BooksRepository booksRepository) {
         this.readersRepository = readersRepository;
         this.readersMapper = readersMapper;
+        this.booksRepository = booksRepository;
     }
 
     public ReadersDTO createReader(ReadersDTO readerDTO) {
@@ -45,7 +49,18 @@ public class ReadersService {
     }
 
     public void deleteReaderById(Long id) {
-        readersRepository.deleteById(id);
+        Optional<ReadersModel> readerToDelete = readersRepository.findById(id);
+        if (readerToDelete.isPresent()) {
+            ReadersModel reader = readerToDelete.get();
+            List<BooksModel> books = reader.getBooks();
+            if (books != null) {
+                for (BooksModel book:books) {
+                    book.setReader(null);
+                }
+                booksRepository.saveAll(books);
+            }
+            readersRepository.deleteById(id);
+        }
     }
 
 }
