@@ -1,5 +1,6 @@
 package dev.cesar.LibrarySystem.Books;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.cesar.LibrarySystem.Readers.ReadersModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,7 @@ public class BooksModel {
 
     @ManyToOne
     @JoinColumn(name = "reader_id")
+    @JsonIgnore
     private ReadersModel reader;
 
 }
