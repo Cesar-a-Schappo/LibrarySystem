@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString
+@ToString(exclude = "reader")
 @Entity
 @Table(name = "tb_books")
 public class BooksModel {
