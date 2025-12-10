@@ -25,6 +25,18 @@ public class ReadersService {
         return readersMapper.map(reader);
     }
 
+    public void saveReaderWithBooks(ReadersDTO readerDTO, List<Long> bookIds) {
+        ReadersModel readerModel = readersMapper.map(readerDTO);
+        ReadersModel savedReader = readersRepository.save(readerModel);
+        if (bookIds != null && !bookIds.isEmpty()) {
+            List<BooksModel> selectedBooks = booksRepository.findAllById(bookIds);
+            for (BooksModel book : selectedBooks) {
+                book.setReader(savedReader);
+            }
+            booksRepository.saveAll(selectedBooks);
+        }
+    }
+
     public List<ReadersDTO> listAllReaders() {
         List<ReadersModel> readers = readersRepository.findAll();
         return readers.stream()
