@@ -16,11 +16,6 @@ public class ReadersController {
         this.readersService = readersService;
     }
 
-    @GetMapping("/welcome")
-    public String welcome() {
-        return "Essa é minha primeira mensagem nesta rota";
-    }
-
     @PostMapping("/create")
     public ResponseEntity<String> createReader(@RequestBody ReadersDTO reader) {
         ReadersDTO newReader = readersService.createReader(reader);
