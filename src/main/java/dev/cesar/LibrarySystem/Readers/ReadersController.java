@@ -27,7 +27,7 @@ public class ReadersController {
             @ApiResponse(responseCode = "400", description = "reader creation error")
     })
     public ResponseEntity<String> createReader(
-            @Parameter(description = "user send the data of the reader that will be created on the path request") @RequestBody ReadersDTO reader) {
+            @Parameter(description = "user send the data of the reader that will be created on the request path") @RequestBody ReadersDTO reader) {
         ReadersDTO newReader = readersService.createReader(reader);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("Reader successfully created: " + newReader.getName() + ". ID: " + newReader.getId());
@@ -48,7 +48,7 @@ public class ReadersController {
             @ApiResponse(responseCode = "404", description = "reader not found")
     })
     public ResponseEntity<?> listReadersById(
-            @Parameter(description = "user sends the ID of the reader that will be listed on the path request") @PathVariable Long id) {
+            @Parameter(description = "user sends the ID of the reader that will be listed on the request path") @PathVariable Long id) {
         ReadersDTO reader = readersService.listReadersById(id);
         if (reader != null) {
             return ResponseEntity.status(HttpStatus.FOUND)
@@ -66,7 +66,7 @@ public class ReadersController {
             @ApiResponse(responseCode = "404", description = "reader not found. data not updated")
     })
     public ResponseEntity<String> updateReaderById(
-            @Parameter(description = "user sends the ID of the reader that will be updated on the path request") @PathVariable Long id,
+            @Parameter(description = "user sends the ID of the reader that will be updated on the request path") @PathVariable Long id,
             @Parameter(description = "user sends the reader data to be updated on the request body") @RequestBody ReadersDTO reader) {
         ReadersDTO updatedReader = readersService.updateReaderById(id, reader);
         if (updatedReader != null) {
@@ -84,7 +84,7 @@ public class ReadersController {
             @ApiResponse(responseCode = "404", description = "reader not found. reader not deleted")
     })
     public ResponseEntity<String> deleteReaderById(
-            @Parameter(description = "user sends the ID of the reader that will be deleted on the path request") @PathVariable Long id) {
+            @Parameter(description = "user sends the ID of the reader that will be deleted on the request path") @PathVariable Long id) {
         if (readersService.listReadersById(id) != null) {
             readersService.deleteReaderById(id);
             return ResponseEntity.ok("Reader of ID: " + id + " deleted.");
